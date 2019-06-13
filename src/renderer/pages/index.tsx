@@ -1,12 +1,8 @@
+import { Redirect } from 'umi';
+import React from 'react';
+
 function Index() {
-  return (
-    <div style={{ textAlign: 'center' }}>
-      <h1>Yay! Welcome to umi-electron-typescript!</h1>
-      <br />
-      <br />
-      <img src={require('../assets/yay.jpg')} width='400' />
-    </div>
-  );
+  return (<Redirect to="/login" />);
 }
 
 export default Index;

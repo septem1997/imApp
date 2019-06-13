@@ -1,0 +1,26 @@
+.window-ctrl{
+  .window-control-item{
+  @extend .is-input;
+    position: relative;
+    float: left;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    color: #999;
+    &:hover{
+      background: #dcdee2;
+      color: #666666;
+    }
+    &.close-item{
+      &:hover{
+        background: rgba(255, 0, 0, 0.91);
+        color: #ffffff;
+      }
+    }
+  }
+  .ivu-icon{
+    font-size:18px;
+  }
+}
