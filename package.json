@@ -68,6 +68,8 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "element-react": "^1.4.34",
+    "element-theme-default": "^1.4.13",
     "http-proxy": "^1.17.0",
     "umi-plugin-react": "^1.7.6"
   },
