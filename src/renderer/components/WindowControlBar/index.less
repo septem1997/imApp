@@ -1,26 +1,22 @@
-.window-ctrl{
-  .window-control-item{
-  @extend .is-input;
-    position: relative;
-    float: left;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
+.windowCtrl{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-content: center;
+
+  .ctrlItem{
+    transition: color 500ms;
+    color: #aaaaaa;
+    margin-left:16px;
     cursor: pointer;
-    color: #999;
+
     &:hover{
-      background: #dcdee2;
-      color: #666666;
+      color: blueviolet;
     }
-    &.close-item{
-      &:hover{
-        background: rgba(255, 0, 0, 0.91);
-        color: #ffffff;
-      }
+
+
+    i{
+      font-size: 18px;
     }
-  }
-  .ivu-icon{
-    font-size:18px;
   }
 }

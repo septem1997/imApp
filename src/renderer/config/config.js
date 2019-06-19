@@ -13,20 +13,11 @@ export default {
         dynamicImport: true,
         title: 'umi-electron-typescript',
         dll: true,
-        routes: {
-          exclude: [],
-        },
         hardSource: false,
         routes: {
           exclude: [/components/],
         },
       },
     ],
-  ],
-  routes: [
-    {
-      path: '/',
-      component: './index',
-    },
-  ],
+  ]
 };

@@ -1,20 +1,24 @@
 import React from 'react';
 import styles from './index.less';
 
-export default function() {
+type Props = {
+  className:string
+}
+
+export default function(props:Props) {
   return (
-    <div className={styles.windowCtrl}>
-      <div className="window-control-item" >
-        <i className="el-icon-minus"/>
+    <div className={props.className+' '+styles.windowCtrl}>
+      <div className={styles.ctrlItem} >
+        <i className="fa fa-sign-out" aria-hidden="true"/>
       </div>
-      <div className="window-control-item" >
-        <i className="el-icon-minus"/>
+      <div className={styles.ctrlItem} >
+        <i className="fa fa-minus"/>
       </div>
-      <div className="window-control-item" >
-        <i className="el-icon-minus"/>
+      <div className={styles.ctrlItem} >
+        <i className="fa fa-square-o" aria-hidden="true"/>
       </div>
-      <div className="window-control-item close-item" >
-        <i className="el-icon-close"/>
+      <div className={styles.ctrlItem} >
+        <i className="fa fa-close"/>
       </div>
     </div>
   );
