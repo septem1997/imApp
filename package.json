@@ -10,14 +10,35 @@
       "node_modules/",
       "package.json"
     ],
-    "mac": {
-      "category": "your.app.category.type"
-    },
     "directories": {
       "output": "release"
     },
-    "appId": "com.wangtianlun.umi-electron-typescript",
-    "asar": true
+    "asar": true,
+    "appId": "com.kuaiyouyi.app.im",
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "mac": {
+      "icon": "build/icons/icon.icns"
+    },
+    "win": {
+      "icon": "build/icons/icon.ico"
+    },
+    "linux": {
+      "icon": "build/icons"
+    }
   },
   "scripts": {
     "start": "npm run build-main-dev && electron ./dist/main/main.js",
@@ -35,7 +56,6 @@
     "prettier": "prettier --list-different \"./**/*.{ts,tsx,js,jsx,less}\"",
     "postinstall": "electron-builder install-app-deps"
   },
-  "repository": "https://github.com/wangtianlun/umi-electron-typescript",
   "keywords": [
     "Electron",
     "umi",
@@ -51,7 +71,7 @@
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
-    "electron": "^5.0.3",
+    "electron": "^5.0.4",
     "electron-builder": "^20.38.5",
     "electron-debug": "^2.0.0",
     "electron-webpack": "^2.6.2",

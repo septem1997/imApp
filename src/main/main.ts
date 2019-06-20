@@ -5,7 +5,12 @@ import * as url from 'url';
 let mainWindow: BrowserWindow;
 let appTray:Electron.Tray;
 
-let __static:string = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+let __static:string;
+if (process.env.NODE_ENV !== 'development') {
+  __static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+}else{
+  __static = require('path').join(__dirname, '../../static').replace(/\\/g, '\\\\')
+}
 
 
 function createWindow() {
@@ -40,9 +45,9 @@ function createWindow() {
     );
   }
 
-  // mainWindow.on('closed', () => {
-  //   mainWindow = null;
-  // });
+  mainWindow.on('closed', () => {
+    appTray.destroy()
+  });
   initAppTray()
 }
 
@@ -64,6 +69,13 @@ function initAppTray() {
         mainWindow.show();
       }
     },
+    {
+      label: '退出快优易IM',
+      click: function() {
+        //清除登陆状态
+        app.quit()
+      }
+    }
     /*{
       label: '账号注销',
       click: function () {
@@ -119,6 +131,6 @@ ipcMain.on("win-hide",()=>{
   mainWindow.minimize();
 })
 ipcMain.on("win-close",()=>{
-  mainWindow.destroy();
+  mainWindow.hide();
 })
 
