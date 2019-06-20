@@ -1,3 +1,5 @@
+import { UmiRule } from 'chain-css-loader';
+
 export default {
   history: 'hash',
   outputPath: `../../dist/renderer`,
@@ -19,4 +21,13 @@ export default {
     ],
     ['./plugin.ts', {}],
   ],
+  urlLoaderExcludes: [
+    /\.styl$/,
+  ],
+  chainWebpack(config) {
+    const rule = new UmiRule(config, {
+      modules: true // start up CSS modules
+    });
+    rule.useStylus();
+  }
 };

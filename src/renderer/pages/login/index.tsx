@@ -1,11 +1,11 @@
 import React from 'react';
 import WindowCtrlBar from '../../components/WindowControlBar';
-import styles from './index.less';
+import styles from './index.styl';
 
 export default class Login extends React.Component {
 
   state={
-    avatar:''
+    avatar:require('@/assets/login_bg.png')
   }
 
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
@@ -13,9 +13,12 @@ export default class Login extends React.Component {
       <div className={'root' + ' ' + styles.content }>
         <WindowCtrlBar className={styles.ctrl} login={false} />
 
-        <div className={styles.bg}><img src={require('@/assets/login_bg.png')}/></div>
+        <div className={styles.bg}><img src={this.state.avatar}/></div>
         <div className={styles.loginBox}>
           <img className={styles.avatar} src={require("@/assets/default_user_img.png")}/>
+          <div className={styles.input}>
+            asd
+          </div>
         </div>
       </div>
     );

@@ -70,6 +70,7 @@
     "email": "750627595@qq.com"
   },
   "devDependencies": {
+    "chain-css-loader": "^1.1.2-beta.1",
     "awesome-typescript-loader": "^5.2.1",
     "electron": "^5.0.4",
     "electron-builder": "^20.38.5",
@@ -87,7 +88,8 @@
     "webpack-cli": "^3.2.1",
     "webpack-merge": "^4.2.1",
     "stylus": "^0.54.5",
-    "style-loader": "^0.23.1"
+    "style-loader": "^0.23.1",
+    "stylus-loader": "^3.0.2"
   },
   "dependencies": {
     "element-react": "^1.4.34",
