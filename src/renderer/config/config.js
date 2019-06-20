@@ -1,5 +1,3 @@
-const cwd = process.cwd();
-
 export default {
   history: 'hash',
   outputPath: `../../dist/renderer`,
@@ -19,6 +17,6 @@ export default {
         },
       },
     ],
-    ['./plugin.ts',{}]
-  ]
+    ['./plugin.ts', {}],
+  ],
 };
