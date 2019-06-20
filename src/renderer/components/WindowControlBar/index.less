@@ -3,8 +3,14 @@
   flex-direction: row;
   justify-content: flex-end;
   align-content: center;
+  padding: 4px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-app-region: drag;
+
 
   .ctrlItem{
+    -webkit-app-region: no-drag;
     transition: color 500ms;
     color: #aaaaaa;
     margin-left:16px;
@@ -16,7 +22,7 @@
 
 
     i{
-      font-size: 18px;
+      font-size: 22px;
     }
   }
 }
