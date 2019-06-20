@@ -17,7 +17,8 @@ export default class Login extends React.Component {
         <div className={styles.loginBox}>
           <img className={styles.avatar} src={require("@/assets/default_user_img.png")}/>
           <div className={styles.input}>
-            asd
+            <div><img src={require("@/assets/login_icon_user_nor.png")}/></div>
+
           </div>
         </div>
       </div>
