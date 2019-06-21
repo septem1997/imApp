@@ -4,6 +4,8 @@ html,body,#root{
     padding: 0;
     margin: 5px;
     overflow: visible;
+    background: transparent!important;
+
 }
 .root{
     position: relative;

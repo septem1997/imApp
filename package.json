@@ -89,11 +89,10 @@
     "webpack-merge": "^4.2.1",
     "stylus": "^0.54.5",
     "style-loader": "^0.23.1",
-    "stylus-loader": "^3.0.2"
+    "stylus-loader": "^3.0.2",
+    "react-hot-loader": "^4.11.1"
   },
   "dependencies": {
-    "element-react": "^1.4.34",
-    "element-theme-default": "^1.4.13",
     "http-proxy": "^1.17.0",
     "redbox-react": "^1.6.0",
     "umi-plugin-react": "^1.7.6"

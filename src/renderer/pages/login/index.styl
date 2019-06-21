@@ -26,11 +26,23 @@
       width: 70px;
       height @width
 
-    .input
+    .autoComplete
+      *:global
+        border-width 0!important
+        border-right-width 0!important
+
+        &:hover
+        &:focus
+        &:active
+          border-width 0!important
+          border-right-width 0!important
+
+
+.input
       display flex
       box-sizing border-box
       padding 6px 10px
-      border-bottom 1px #E5E5E5
+      border-bottom 1px #E5E5E5 solid
 
 
 
