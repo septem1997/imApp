@@ -8,22 +8,40 @@
   box-sizing: border-box;
   -webkit-app-region: drag;
   position: absolute;
-
-
   .ctrlItem{
-    -webkit-app-region: no-drag;
-    transition: color 500ms;
-    color: #aaaaaa;
     margin-left:16px;
-    cursor: pointer;
-
-    &:hover{
-      color: blueviolet;
-    }
-
 
     i{
-      font-size: 16px;
+      -webkit-app-region: no-drag;
+      transition: color 300ms;
+      color: #dddddd;
     }
+    i:hover{
+      color: blueviolet;
+      cursor: pointer;
+    }
+  }
+}
+.loginWindow{
+  i{
+    font-size: 16px;
+  }
+}
+.mainWindow{
+  height: 80px;
+  background: linear-gradient(-90deg,rgba(33,118,255,1) 1%,rgba(75,179,253,1) 100%);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+
+  .ctrlItem{
+    i{
+      color: #DDDDDD;
+    }
+    i:hover{
+      color: white;
+    }
+  }
+  i{
+    font-size: 26px;
   }
 }

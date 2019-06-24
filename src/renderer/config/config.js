@@ -11,7 +11,7 @@ export default {
       {
         antd: true,
         dva: true,
-        dynamicImport: true,
+        dynamicImport: false,
         title: 'umi-electron-typescript',
         dll: true,
         hardSource: false,

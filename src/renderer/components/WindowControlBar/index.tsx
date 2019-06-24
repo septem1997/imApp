@@ -5,7 +5,6 @@ import styles from './index.less';
 const {ipcRenderer} = window.require('electron')
 
 type Props = {
-  className:string,
   login: boolean
 }
 
@@ -15,9 +14,9 @@ export default function(props:Props) {
   }
 
   return (
-    <div className={props.className+' '+styles.windowCtrl}>
+    <div className={(props.login?styles.loginWindow:styles.mainWindow)+' '+styles.windowCtrl}>
       <div className={styles.ctrlItem} onClick={()=>{sendMsg('win-logout')}} style={{display:props.login?'none':'block'}}>
-        <i className="icon ion-md-exit"/>
+        <i className="icon ion-md-exit" />
       </div>
       <div className={styles.ctrlItem} onClick={()=>{sendMsg('win-hide')}}>
         <i className="icon ion-md-remove"/>

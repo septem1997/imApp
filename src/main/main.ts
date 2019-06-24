@@ -12,6 +12,8 @@ if (process.env.NODE_ENV !== 'development') {
   __static = require('path').join(__dirname, '../../static').replace(/\\/g, '\\\\')
 }
 
+let winUrl:string = ""
+
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -33,12 +35,14 @@ function createWindow() {
   });
 
   if (process.env.NODE_ENV === 'development') {
+    winUrl = 'http://localhost:8000'
     mainWindow.loadURL('http://localhost:8000/#/');
     mainWindow.webContents.openDevTools();
   } else {
+    winUrl = path.join(__dirname, './dist/renderer/index.html')
     mainWindow.loadURL(
       url.format({
-        pathname: path.join(__dirname, './dist/renderer/index.html'),
+        pathname: winUrl,
         protocol: 'file:',
         slashes: true,
       }),
@@ -113,6 +117,16 @@ function initAppTray() {
   appTray.setContextMenu(contextMenu);
 }
 
+function login(){
+  mainWindow.hide()
+  mainWindow.setSize(1180,640)
+  mainWindow.setMinimumSize(1080,640)
+  mainWindow.setResizable(true)
+  mainWindow.setMaximizable(true)
+  mainWindow.center()
+  mainWindow.loadURL(winUrl + "#/main");
+}
+
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
@@ -132,5 +146,12 @@ ipcMain.on("win-hide",()=>{
 })
 ipcMain.on("win-close",()=>{
   mainWindow.hide();
+})
+ipcMain.on("win-show",()=>{
+  mainWindow.show()
+})
+
+ipcMain.on("login",()=>{
+  login()
 })
 

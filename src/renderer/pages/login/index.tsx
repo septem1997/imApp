@@ -1,8 +1,11 @@
 import React from 'react';
 import WindowCtrlBar from '../../components/WindowControlBar';
 import styles from './index.styl';
-import {Input,Button,AutoComplete,Checkbox,Icon} from 'antd'
+import {Input,Button,AutoComplete,Checkbox} from 'antd'
 const {Option} = AutoComplete
+// @ts-ignore
+const {ipcRenderer} = window.require('electron')
+
 
 function renderOption(item) {
   return (
@@ -23,7 +26,9 @@ export default class Login extends React.Component {
     options: ["123","456","12"],
     rememberPassword:localStorage.getItem("rememberPassword"),
     autoLogin:localStorage.getItem("autoLogin"),
-    openSuggestion:false
+    openSuggestion:false,
+    loginText:'登录',
+    opacity:1
   };
 
   selectUsername = (val)=>{
@@ -49,15 +54,35 @@ export default class Login extends React.Component {
     })
   }
 
-  login = ()=>{
-
+  login = async () => {
+    this.setState({
+      loginText:'正在登录中...'
+    })
+    let res = await new Promise((resolve) => {
+      setTimeout(()=>{
+        resolve(this.state.username)
+      },300)
+    })
+    if (res) {
+      localStorage.setItem("lastLoginUser", this.state.username)
+      this.setState({
+        opacity:0
+      })
+      setTimeout(()=>{
+        ipcRenderer.send("login")
+      },500)
+    }else {
+      this.setState({
+        loginText:'登录'
+      })
+    }
   }
 
 
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
     return (
-      <div className={'root' + ' ' + styles.content }>
-        <WindowCtrlBar className={styles.ctrl} login={false} />
+      <div className={'root' + ' ' + styles.content } style={{opacity:this.state.opacity}}>
+        <WindowCtrlBar login={true} />
 
         <div className={styles.bg}><img src={this.state.avatar}/></div>
         <div className={styles.loginBox}>
@@ -80,7 +105,7 @@ export default class Login extends React.Component {
             <div><img src={require("@/assets/login_icon_password_nor.png")}/></div>
             <Input type={"password"}/>
           </div>
-          <Button type="primary" onClick={this.login} className={styles.loginBtn}>登录</Button>
+          <Button type="primary" onClick={this.login} className={styles.loginBtn}>{this.state.loginText}</Button>
           <div className={styles.toolBar}>
             <Checkbox onChange={this.onRememberPasswordChange} value={this.state.rememberPassword}>记住密码</Checkbox>
             <Checkbox onChange={this.onAutoLoginChange} value={this.state.autoLogin}>自动登录</Checkbox>
