@@ -21,7 +21,7 @@ function renderOption(item) {
 export default class Login extends React.Component {
 
   state={
-    avatar:require('@/assets/login_bg.png'),
+    avatar:require("@/assets/default_user_img.png"),
     username:localStorage.getItem("lastLoginUser")||'',
     options: ["123","456","12"],
     rememberPassword:localStorage.getItem("rememberPassword"),
@@ -84,9 +84,9 @@ export default class Login extends React.Component {
       <div className={'root' + ' ' + styles.content } style={{opacity:this.state.opacity}}>
         <WindowCtrlBar login={true} />
 
-        <div className={styles.bg}><img src={this.state.avatar}/></div>
+        <div className={styles.bg}><img src={require('@/assets/login_bg.png')}/></div>
         <div className={styles.loginBox}>
-          <img className={styles.avatar} src={require("@/assets/default_user_img.png")}/>
+          <img className={styles.avatar} src={this.state.avatar}/>
           <div className={styles.input}>
             <img src={require("@/assets/login_icon_user_nor.png")}/>
             <AutoComplete

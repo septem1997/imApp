@@ -1,5 +1,6 @@
 import React from 'react';
 import WindowCtrlBar from '../../components/WindowControlBar';
+import UserHead from '../../components/UserHead';
 import styles from './index.styl';
 // @ts-ignore
 const {ipcRenderer} = window.require('electron')
@@ -26,6 +27,7 @@ export default class Login extends React.Component {
     return (
       <div className={"root" + ' ' + styles.root} style={{opacity:this.state.opacity}} >
         <WindowCtrlBar login={false}/>
+        <UserHead />
       </div>);
   }
 }
