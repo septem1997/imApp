@@ -16,33 +16,58 @@
 
 
   .loginBox
-    flex: 1;
+    margin 0 auto
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width 244px
 
     .avatar
       width: 70px;
       height @width
 
-    .autoComplete
-      *:global
+  .toolBar
+    display flex
+    width 100%
+    position relative
+    align-items center
+    span
+      zoom 88%
+    a
+      position absolute
+      right 0
+      font-size 12px
+
+  .input
+    display flex
+    box-sizing border-box
+    padding 8px 10px
+    border-bottom 1px #E5E5E5 solid
+    width 100%
+    height 36px
+    align-items center
+    margin-top 6px
+
+    img
+      width 20px
+      height @width
+
+    input:global
+      border-width 0!important
+      border-right-width 0!important
+      &:hover
+      &:focus
+      &:active
         border-width 0!important
         border-right-width 0!important
-
-        &:hover
-        &:focus
-        &:active
-          border-width 0!important
-          border-right-width 0!important
+        box-shadow none!important
 
 
-.input
-      display flex
-      box-sizing border-box
-      padding 6px 10px
-      border-bottom 1px #E5E5E5 solid
-
+  .loginBtn
+    margin-top 20px
+    margin-bottom 12px
+    width 100%
+    font-size 16px
 
 

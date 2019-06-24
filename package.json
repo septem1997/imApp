@@ -70,7 +70,8 @@
     "email": "750627595@qq.com"
   },
   "devDependencies": {
-    "chain-css-loader": "^1.1.2-beta.1",
+    "rucksack-css": "^1.0.2",
+    "chain-css-loader": "^1.1.2",
     "awesome-typescript-loader": "^5.2.1",
     "electron": "^5.0.4",
     "electron-builder": "^20.38.5",
@@ -94,6 +95,7 @@
   },
   "dependencies": {
     "http-proxy": "^1.17.0",
+    "poststylus": "^1.0.0",
     "redbox-react": "^1.6.0",
     "umi-plugin-react": "^1.7.6"
   },
