@@ -1,7 +1,11 @@
 import React from 'react';
 import WindowCtrlBar from '../../components/WindowControlBar';
 import UserHead from '../../components/UserHead';
-import styles from './index.styl';
+import InfoBox from '../../components/InfoBox';
+import ChatBox from '../../components/ChatBox';
+import CustomerList from '../../components/CustomerList';
+
+import styles from './index.sass';
 // @ts-ignore
 const {ipcRenderer} = window.require('electron')
 
@@ -28,6 +32,11 @@ export default class Login extends React.Component {
       <div className={"root" + ' ' + styles.root} style={{opacity:this.state.opacity}} >
         <WindowCtrlBar login={false}/>
         <UserHead />
+        <div className={styles.mainLayout}>
+          <CustomerList />
+          <ChatBox />
+          <InfoBox />
+        </div>
       </div>);
   }
 }

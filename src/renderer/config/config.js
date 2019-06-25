@@ -5,6 +5,7 @@ export default {
   history: 'hash',
   outputPath: `../../dist/renderer`,
   publicPath: './',
+  sass: {},
   plugins: [
     [
       'umi-plugin-react',
