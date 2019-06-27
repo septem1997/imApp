@@ -8,25 +8,47 @@ type Props = {
   login: boolean
 }
 
-export default function(props:Props) {
-  function sendMsg(msg:string) {
+export default class extends React.Component<Props> {
+
+  sendMsg = (msg:string)=>{
     ipcRenderer.send(msg);
   }
 
-  return (
-    <div className={(props.login?styles.loginWindow:styles.mainWindow)+' '+styles.windowCtrl}>
-      <div className={styles.ctrlItem} onClick={()=>{sendMsg('win-logout')}} style={{display:props.login?'none':'block'}}>
-        <i className="icon ion-md-exit" />
+  isFullScreen:boolean = false
+
+  componentDidMount(): void {
+    const root = document.getElementsByClassName("root");
+    const classList = root.item(0).classList;
+    ipcRenderer.on("win-un-max",()=>{
+      this.isFullScreen = false
+      classList.remove("withoutShadow")
+      classList.add("withShadow")
+    })
+    ipcRenderer.on("win-max",()=>{
+      this.isFullScreen = true
+      classList.remove("withShadow")
+      classList.add("withoutShadow")
+    })
+  }
+
+
+  render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+    return (
+      <div className={(this.props.login?styles.loginWindow:styles.mainWindow)+' '+styles.windowCtrl}>
+        <div className={styles.ctrlItem} onClick={()=>{this.sendMsg('win-logout')}} style={{display:this.props.login?'none':'block'}}>
+          <i className="icon ion-md-exit" />
+        </div>
+        <div className={styles.ctrlItem} onClick={()=>{this.sendMsg('win-hide')}}>
+          <i className="icon ion-md-remove"/>
+        </div>
+        <div className={styles.ctrlItem} style={{display:this.props.login?'none':'block'}} onClick={()=>{this.sendMsg(this.isFullScreen?'win-un-max':'win-max')}}>
+          <i className="icon ion-ios-square-outline"/>
+        </div>
+        <div className={styles.ctrlItem} onClick={()=>{this.sendMsg('win-close')}}>
+          <i className="icon ion-md-close"/>
+        </div>
       </div>
-      <div className={styles.ctrlItem} onClick={()=>{sendMsg('win-hide')}}>
-        <i className="icon ion-md-remove"/>
-      </div>
-      <div className={styles.ctrlItem} style={{display:props.login?'none':'block'}} onClick={()=>{sendMsg('win-max')}}>
-        <i className="icon ion-ios-square-outline"/>
-      </div>
-      <div className={styles.ctrlItem} onClick={()=>{sendMsg('win-close')}}>
-        <i className="icon ion-md-close"/>
-      </div>
-    </div>
-  );
+    )
+  }
+
 }

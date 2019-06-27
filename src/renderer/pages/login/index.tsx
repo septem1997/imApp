@@ -81,7 +81,7 @@ export default class Login extends React.Component {
 
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
     return (
-      <div className={'root' + ' ' + styles.content } style={{opacity:this.state.opacity}}>
+      <div className={'root withShadow' + ' ' + styles.content } style={{opacity:this.state.opacity}}>
         <WindowCtrlBar login={true} />
 
         <div className={styles.bg}><img src={require('@/assets/login_bg.png')}/></div>

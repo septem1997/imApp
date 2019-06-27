@@ -29,7 +29,7 @@ export default class Login extends React.Component {
 
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
     return (
-      <div className={"root" + ' ' + styles.root} style={{opacity:this.state.opacity}} >
+      <div className={"root withShadow" + ' ' + styles.root} style={{opacity:this.state.opacity}} >
         <WindowCtrlBar login={false}/>
         <UserHead />
         <div className={styles.mainLayout}>
