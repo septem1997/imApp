@@ -25,7 +25,7 @@ export default class extends React.Component<Props> {
     ipcRenderer.on("win-max",()=>{
       this.isFullScreen = true
     })
-    //todo 待完善
+    //todo 通过electron的resize方法监听是否最大化
     window.addEventListener("resize",()=>{
       let screen = window.screen
       if (document.body.clientWidth===window.innerWidth&&document.body.clientHeight===window.innerHeight){
