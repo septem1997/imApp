@@ -153,7 +153,7 @@ ipcMain.on("win-show",()=>{
   mainWindow.show()
 })
 ipcMain.on("win-max",()=>{
-  mainWindow.setFullScreen(true)
+  mainWindow.maximize()
   mainWindow.webContents.send("win-max")
 })
 

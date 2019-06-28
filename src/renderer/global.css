@@ -27,6 +27,62 @@ html,body,#root{
     box-shadow:0px 0px 5px 2px rgba(27,27,27,0.09);
 }
 
+.myTabs{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.myTabs .ant-tabs-content{
+    flex: 1;
+}
+.myTabs .ant-tabs-nav .ant-tabs-tab{
+    margin: 0;
+    width: 50%;
+    text-align: center;
+    font-size: 16px;
+    padding: 0 8px 8px;
+}
+.myTabs .ant-tabs-nav{
+    width: 100%;
+}
+.myTabs .ant-tabs-bar{
+    margin-bottom: 0;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(123, 123, 123, 0.2);
+    background: rgba(33, 118, 255, 0.3);
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 5px rgba(123, 123, 123, 0.2);
+    border-radius: 5px;
+    background: #f6f6f6;
+}
+
+
+.ant-dropdown-menu {
+    padding: 0;
+}
+.ant-dropdown-menu-item:first-child{
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.ant-dropdown-menu-item:last-child{
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.ant-dropdown-menu-item:hover, .ant-dropdown-menu-submenu-title:hover{
+    color:#349CFC
+}
 .ant-select-auto-complete.ant-select .ant-input:focus, .ant-select-auto-complete.ant-select .ant-input:hover{
     border-right-width: 0!important;
 }

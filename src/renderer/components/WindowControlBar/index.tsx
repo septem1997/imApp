@@ -21,13 +21,20 @@ export default class extends React.Component<Props> {
     const classList = root.item(0).classList;
     ipcRenderer.on("win-un-max",()=>{
       this.isFullScreen = false
-      classList.remove("withoutShadow")
-      classList.add("withShadow")
     })
     ipcRenderer.on("win-max",()=>{
       this.isFullScreen = true
-      classList.remove("withShadow")
-      classList.add("withoutShadow")
+    })
+    //todo 待完善
+    window.addEventListener("resize",()=>{
+      let screen = window.screen
+      if (document.body.clientWidth===window.innerWidth&&document.body.clientHeight===window.innerHeight){
+        classList.remove("withoutShadow")
+        classList.add("withShadow")
+      }else{
+        classList.remove("withShadow")
+        classList.add("withoutShadow")
+      }
     })
   }
 
