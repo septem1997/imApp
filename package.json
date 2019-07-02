@@ -83,8 +83,7 @@
     "tslint": "^5.10.0",
     "typescript": "^3.2.4",
     "uglifyjs-webpack-plugin": "^2.1.1",
-    "umi": "^2.7.5",
-    "umi-plugin-react": "^1.8.3",
+    "umi": "^2.8.8",
     "webpack": "4.28.0",
     "webpack-cli": "^3.2.1",
     "webpack-merge": "^4.2.1",
@@ -93,13 +92,13 @@
     "stylus-loader": "^3.0.2",
     "react-hot-loader": "^4.11.1",
     "node-sass": "^4.12.0",
-    "sass-loader": "^7.1.0"
+    "sass-loader": "^7.1.0",
+    "umi-plugin-react": "^1.9.7"
   },
   "dependencies": {
     "http-proxy": "^1.17.0",
     "poststylus": "^1.0.0",
-    "redbox-react": "^1.6.0",
-    "umi-plugin-react": "^1.7.6"
+    "redbox-react": "^1.6.0"
   },
   "electronWebpack": {
     "main": {

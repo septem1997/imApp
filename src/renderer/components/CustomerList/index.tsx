@@ -1,7 +1,8 @@
 import React from 'react';
 import sty from './index.sass'
-import {Input,Tabs} from 'antd'
+import {Tabs} from 'antd'
 import SessionList from '../SessionList'
+import RecentList from '../RecentList';
 
 const {TabPane} = Tabs
 
@@ -19,7 +20,7 @@ export default class extends React.Component {
           <SessionList />
         </TabPane>
         <TabPane tab="最近" key="2" style={{height:'100%'}}>
-          Content of Tab Pane 2
+          <RecentList />
         </TabPane>
       </Tabs>
     </div>);

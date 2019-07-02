@@ -11,7 +11,9 @@ export default {
       'umi-plugin-react',
       {
         antd: true,
-        dva: true,
+        dva: {
+          immer: true
+        },
         dynamicImport: false,
         title: 'umi-electron-typescript',
         dll: true,
