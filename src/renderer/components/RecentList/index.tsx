@@ -7,16 +7,17 @@ import { connect } from 'dva';
 const { Panel } = Collapse;
 
 function mapStateToProps(state) {
-  const { recentList, selectedIndex } = state.global;
+  const { selectedUserIndex } = state.global;
+  const recentList = state.recentList
   return {
     recentList,
-    selectedIndex,
+    selectedUserIndex: selectedUserIndex,
   };
 }
 
 type Props = {
   recentList: [],
-  selectedIndex: string
+  selectedUserIndex: string
 }
 
 export default connect(mapStateToProps)(class extends React.Component<Props> {

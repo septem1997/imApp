@@ -5,16 +5,17 @@ import { Dropdown, Menu } from 'antd';
 import { connect } from 'dva';
 
 function mapStateToProps(state) {
-  const { sessionList, selectedIndex } = state.global;
+  const { selectedUserIndex } = state.global;
+  const sessionList = state.sessionList
   return {
     sessionList,
-    selectedIndex,
+    selectedUserIndex: selectedUserIndex,
   };
 }
 
 type Props = {
   sessionList: [],
-  selectedIndex: string
+  selectedUserIndex: string
 }
 
 export default connect(mapStateToProps)(class extends React.Component<Props> {
@@ -51,7 +52,7 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
       );
 
       let activeIndex = null;
-      let indexes = this.props.selectedIndex.split('-');
+      let indexes = this.props.selectedUserIndex.split('-');
       if (indexes[0] === '0') {
         activeIndex = Number(indexes[1]);
       }
