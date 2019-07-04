@@ -3,3 +3,59 @@
   width: 100%
   background-color: white
   border-top: #eeeeee 1px solid
+  display: flex
+  flex-direction: column
+
+  .emotionPanel
+    position: absolute
+    width: 300px
+    height: 100px
+    background: rgba(255,255,255,1)
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1)
+    transform: translateY(calc(-100% - 1px))
+
+  .toolbar
+    height: 40px
+    width: 100%
+    align-items: center
+    display: flex
+    padding: 0 14px
+
+    i
+      transition: color 100ms
+      font-size: 20px
+      color: #999999
+      margin-right: 20px
+      cursor: pointer
+
+      &:hover
+        color: #349CFC
+
+  .textarea
+    flex: 1
+    width: 100%
+    padding: 0 10px
+    outline: none
+    color: #333333
+
+  .btn
+    width: 100%
+    height: 40px
+    display: flex
+    flex-direction: row-reverse
+    padding: 0 10px
+
+    button
+      height: 30px
+      width: 60px
+      margin: 0 5px
+      border: none
+
+    .send
+      background-color: #97CCFD
+      color: #FDFDFD
+
+    .close
+      background-color: #F5F6F8
+      color: #BBBBBB
+

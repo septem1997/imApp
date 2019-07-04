@@ -96,6 +96,7 @@
     "umi-plugin-react": "^1.9.7"
   },
   "dependencies": {
+    "moment": "^2.24.0",
     "http-proxy": "^1.17.0",
     "poststylus": "^1.0.0",
     "redbox-react": "^1.6.0"
