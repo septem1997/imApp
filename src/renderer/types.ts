@@ -7,6 +7,7 @@ export type MsgItem = {
 }
 
 export type CurrentUser = {
+  id:string,
   avatar:string,
   userName:string,
   account:string,

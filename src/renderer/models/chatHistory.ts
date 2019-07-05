@@ -5,13 +5,13 @@ export default {
       {
         type:'msg',
         content:'这是一条很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的消息',
-        time:new Date().getTime()/1000,
+        time:1561939200,
         avatar:'',
         isMine:true
       },{
         type:'msg',
         content:'这是消息asdasdsd',
-        time:new Date().getTime()/1000,
+        time:1561939200,
         avatar:'',
         isMine:true
       },{
@@ -24,6 +24,30 @@ export default {
         time:new Date().getTime()/1000,
         avatar:'',
         isMine:false
+      },{
+        type:'msg',
+        content:'这是消息asdasdsd',
+        time:new Date().getTime()/1000,
+        avatar:'',
+        isMine:true
+      },{
+        type:'msg',
+        content:'这是消息asdasdsd',
+        time:new Date().getTime()/1000,
+        avatar:'',
+        isMine:true
+      },{
+        type:'msg',
+        content:'这是消息asdasdsd',
+        time:new Date().getTime()/1000,
+        avatar:'',
+        isMine:true
+      },{
+        type:'msg',
+        content:'这是消息asdasdsd',
+        time:new Date().getTime()/1000,
+        avatar:'',
+        isMine:true
       },{
         type:'msg',
         content:'这是消息asdasdsd',
