@@ -2,28 +2,35 @@ export default {
   namespace:'sessionList',
   state:[
     {
-      name: '用户用户用户用户用户用户用户',
+      userName: '用户用户用户用户用户用户用户',
       msg: '这是消息这是消息这是消息这是消息这是消息',
       time: '05:00',
-      img: require('@/assets/default_user_img.png'),
+      avatar: require('@/assets/default_user_img.png'),
       id: 0,
+      account:'123456',
+      email:'fuck@you.com',
+      companies:[
+        '腾讯',
+        '阿里'
+      ],
+      remark:'备注'
     }, {
-      name: '用户',
+      userName: '用户',
       msg: '这是消息',
       time: '05:00',
-      img: '',
+      avatar: '',
       id: 1,
     }, {
-      name: '用户',
+      userName: '用户',
       msg: '这是消息',
       time: '05:00',
-      img: '',
+      avatar: '',
       id: 2,
     }, {
-      name: '用户',
+      userName: '用户',
       msg: '这是消息',
       time: '05:00',
-      img: '',
+      avatar: '',
       id: 3,
     },
   ],

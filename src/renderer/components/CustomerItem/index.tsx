@@ -32,7 +32,7 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
 
     const {
-      name, msg, img, time,
+      userName, msg, avatar, time,
     } = this.props.info;
     const {
       selectedUserIndex, index,
@@ -43,10 +43,10 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
            onClick={this.changeIndex}
            style={{ backgroundColor: selectedUserIndex === index ? '#F2F2F2' : 'white' }}>
         <div className={sty.avatar}>
-          <img src={img}/>
+          <img src={avatar}/>
         </div>
         <div className={sty.content}>
-          <div className={sty.name}>{name}</div>
+          <div className={sty.name}>{userName}</div>
           <div className={sty.msg}>{msg}</div>
         </div>
         <div className={sty.time}>

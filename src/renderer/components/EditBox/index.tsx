@@ -64,6 +64,11 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
   textarea = React.createRef<HTMLDivElement>();
 
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+
+    if (!this.props.currentUser){
+      return <div className={sty.editBox}/>
+    }
+
     return (
       <div className={sty.editBox}>
         <div className={sty.emotionPanel} style={{display:this.state.isEmotionPanelOpen?'block':'none'}}/>

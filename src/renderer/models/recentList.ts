@@ -5,16 +5,16 @@ export default {
       name: '快优易店铺',
       users: [
         {
-          name: '用户用户用户用户用户用户用户',
+          userName: '用户用户用户用户用户用户用户',
           msg: '这是消息这是消息这是消息这是消息这是消息',
           time: '05:00',
-          img: require('@/assets/default_user_img.png'),
+          avatar: require('@/assets/default_user_img.png'),
           id:4
         }, {
-          name: '用户',
+          userName: '用户',
           msg: '这是消息',
           time: '05:00',
-          img: '',
+          avatar: '',
           id:5
         }
       ],
@@ -22,16 +22,16 @@ export default {
       name: '快优易店铺1',
       users: [
         {
-          name: '用户用户用户用户用户用户用户',
+          userName: '用户用户用户用户用户用户用户',
           msg: '这是消息这是消息这是消息这是消息这是消息',
           time: '05:00',
-          img: require('@/assets/default_user_img.png'),
+          avatar: require('@/assets/default_user_img.png'),
           id:6
         }, {
-          name: '用户',
+          userName: '用户',
           msg: '这是消息',
           time: '05:00',
-          img: '',
+          avatar: '',
           id:7
         }
       ],

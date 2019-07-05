@@ -130,9 +130,9 @@ function initAppTray() {
 function login() {
   mainWindow.hide();
   setTimeout(() => {
-    mainWindow.setMinimumSize(1080, 640);
+    mainWindow.setMinimumSize(1100, 640);
   }, 0); //此处为electron的bug，需要延时设置，当前版本为5.0.5，若后续版本已修复该问题可移除掉该定时器
-  mainWindow.setSize(1180, 640);
+  mainWindow.setSize(1200, 640);
   mainWindow.setResizable(true);
   mainWindow.setMaximizable(true);
   mainWindow.center();
