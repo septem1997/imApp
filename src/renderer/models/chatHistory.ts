@@ -82,7 +82,17 @@ export default {
         avatar:'',
         isMine:true
       },
+      {
+        type:'evaluation',
+        time:new Date().getTime()/1000,
+      }
     ],
+    "2":[
+      {
+        type:'evaluation',
+        time:new Date().getTime()/1000,
+      }
+    ]
   },
   reducers: {
     update(state, { payload: {id,msgItem} }) {

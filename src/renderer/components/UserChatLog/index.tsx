@@ -34,6 +34,9 @@ export default class extends React.Component<Props> {
     let logList = []
     let currentDate = null
     chatHistory.forEach((item:MsgItem)=>{
+      if (item.type!=='msg'){
+        return
+      }
       if (moment.unix(item.time).format("YYYY-MM-DD")!==currentDate){
         currentDate = moment.unix(item.time).format("YYYY-MM-DD")
         logList.push(<div className={sty.logDate}>——&nbsp;{currentDate}&nbsp;——</div>)
