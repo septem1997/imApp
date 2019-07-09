@@ -1,7 +1,7 @@
 import React from 'react';
 import sty from './index.sass';
 import { connect } from 'dva';
-import { Button, Icon, Tooltip, Modal } from 'antd';
+import { Button, Icon, Tooltip, Modal,Upload } from 'antd';
 import { Emotion } from '@/types';
 // @ts-ignore
 const { clipboard } = window.require('electron');
@@ -28,7 +28,11 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
   };
 
   appendEmotion = (name)=>{
-    this.textarea.current.innerHTML += `[${name}]`;
+    this.appendTextToEditBox(`[${name}]`)
+  }
+
+  appendTextToEditBox = (text)=>{
+    this.textarea.current.innerHTML += text;
     let range = getSelection();
     range.selectAllChildren(this.textarea.current);
     range.collapseToEnd();
@@ -36,11 +40,7 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
 
   onPaste = (e) => {
     e.preventDefault();
-    let text = clipboard.readText();
-    this.textarea.current.innerHTML += text;
-    let range = getSelection();
-    range.selectAllChildren(this.textarea.current);
-    range.collapseToEnd();
+    this.appendTextToEditBox(clipboard.readText())
   };
 
   openEmotionPanel = () => {
@@ -75,7 +75,7 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
   };
 
   sendMsg = () => {
-    let text = this.textarea.current.innerText;
+    let text = this.textarea.current.innerHTML;
     if (!text) {
       clearTimeout(this.emptyTipSetTimeout);
       this.setState({
@@ -88,6 +88,8 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
       }, 1000);
       return;
     }
+    text=text.replace('</div>','')
+    text=text.replace('<div>','[newline]')
     this.props.dispatch({
       type: 'chatHistory/update',
       payload: {
@@ -117,6 +119,17 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
     });
   };
 
+  onKeyDown = (e)=>{
+    if (e.keyCode===13){
+      e.preventDefault()
+      if (e.ctrlKey){
+        this.appendTextToEditBox('<div><br></div>')
+      }else{
+        this.sendMsg()
+      }
+    }
+  }
+
 
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
 
@@ -132,11 +145,11 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
         </div>
         <div className={sty.toolbar}>
           <Icon type="smile" onClick={this.openEmotionPanel}/>
-          <Icon type="picture"/>
-          <Icon type="folder"/>
+          <Upload accept={'image/*'}><Icon type="picture"/></Upload>
+          <Upload><Icon type="folder"/></Upload>
           <Icon type="star" onClick={this.sendEvaluation}/>
         </div>
-        <div ref={this.textarea} className={sty.textarea} onPaste={this.onPaste} contentEditable={true}/>
+        <div onKeyDown={this.onKeyDown} ref={this.textarea} className={sty.textarea} onPaste={this.onPaste} contentEditable={true}/>
         <div className={sty.btn}>
           <Tooltip title="发送内容不能为空" visible={this.state.isSendContentEmpty}>
             <Button className={sty.send} onClick={this.sendMsg}>发送</Button>

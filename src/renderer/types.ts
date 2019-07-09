@@ -20,4 +20,5 @@ export type Emotion = {
   src: any,
   name: string,
   title: string,
+  path:string
 }

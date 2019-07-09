@@ -23,10 +23,12 @@ export default class extends React.Component<Props> {
   parseMsg = (text:string)=>{
     // @ts-ignore
     return text.replace(/\[[a-z]*\]/g,(char)=>{
-      console.log(char);
+      if (char==='[newline]'){
+        return '<br>'
+      }
       const emotion:Emotion = this.props.emotions.find(item=> `[${item.name}]`===char)
       if (emotion){
-        return <img src={emotion.src}/>
+        return `<img style="width: 24px;height: 24px" src='${emotion.src}'/>`
       }else {
         return char
       }
@@ -44,7 +46,7 @@ export default class extends React.Component<Props> {
         <div className={sty.msg}>
           <div className={sty.time}
                style={{ right: isMine ? '0' : 'auto' }}>{moment.unix(time).format('YYYY-MM-DD HH:mm:ss')}</div>
-          <div className={sty.text} style={{ backgroundColor: isMine ? '#E5EFFF' : 'white' }}>{this.parseMsg(content)}</div>
+          <div className={sty.text} dangerouslySetInnerHTML={{__html:this.parseMsg(content)}} style={{ backgroundColor: isMine ? '#E5EFFF' : 'white' }}/>
         </div>
         <div className={sty.blank}/>
       </div>);
@@ -66,7 +68,7 @@ export default class extends React.Component<Props> {
           <div className={sty.msg}>
             <div className={sty.time}
                  style={{ right:'0'}}>{moment.unix(time).format('YYYY-MM-DD HH:mm:ss')}</div>
-            <div className={sty.text} style={{paddingRight:'90px'}}>
+            <div className={sty.text} style={{paddingRight:'90px',display:'block',userSelect:'none'}}>
               您对本次服务是否满意？
               <br/>
               <Rate disabled defaultValue={0} character={<Icon type="star" />}/>

@@ -10,7 +10,7 @@ export default {
         isMine:true
       },{
         type:'msg',
-        content:'这是消息asdasdsd',
+        content:'这是消息asdasdsd[smile]',
         time:1561939200,
         avatar:'',
         isMine:true
