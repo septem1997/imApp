@@ -3,3 +3,4 @@ dist
 src/renderer/pages/.umi
 release
 /.idea
+*.local.js
