@@ -24,7 +24,7 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
 
   state = {
     isEmotionPanelOpen: false,
-    isSendContentEmpty: false,
+    isSendContentEmpty: false
   };
 
   appendEmotion = (name)=>{
@@ -130,6 +130,11 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
     }
   }
 
+  openQuickReplyPanel = ()=>{
+
+  }
+
+
 
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
 
@@ -148,6 +153,7 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
           <Upload accept={'image/*'}><Icon type="picture"/></Upload>
           <Upload><Icon type="folder"/></Upload>
           <Icon type="star" onClick={this.sendEvaluation}/>
+          <div onClick={this.openQuickReplyPanel} className={sty.quickReply}>快捷回复</div>
         </div>
         <div onKeyDown={this.onKeyDown} ref={this.textarea} className={sty.textarea} onPaste={this.onPaste} contentEditable={true}/>
         <div className={sty.btn}>
