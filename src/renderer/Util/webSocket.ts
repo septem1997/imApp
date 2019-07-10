@@ -7,7 +7,8 @@ class WS extends WebSocket {
 
   public static getInstance() {
     if (!WS.instance) {
-      WS.instance = new WS();
+      const [protocol,url] = process.env.WS_URL.split("://")
+      WS.instance = new WS(url,protocol);
     }
 
     return WS.instance;
