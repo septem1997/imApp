@@ -2,6 +2,7 @@ import React from 'react';
 import WindowCtrlBar from '../../components/WindowControlBar';
 import styles from './index.styl';
 import {Input,Button,AutoComplete,Checkbox} from 'antd'
+import WS from '@/Util/webSocket';
 const {Option} = AutoComplete
 // @ts-ignore
 const {ipcRenderer} = window.require('electron')
@@ -44,6 +45,10 @@ export default class Login extends React.Component {
     this.setState({
       rememberPassword:value
     })
+  }
+
+  componentDidMount(): void {
+
   }
 
   onAutoLoginChange = (e)=>{
