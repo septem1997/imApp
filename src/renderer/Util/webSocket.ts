@@ -20,7 +20,12 @@ class WS extends WebSocket {
 
   private static connect() {
     return new Promise((resolve) => {
-      this.instance = new WS(process.env.WS_URL);
+      if (this.instance&&this.instance.readyState===WebSocket.CONNECTING){
+
+      }else {
+        let url:string = process.env.WS_URL||''
+        this.instance = new WS(url);
+      }
       this.instance.onopen = () => {
         resolve();
       };
@@ -44,13 +49,13 @@ class WS extends WebSocket {
     });
   }
 
-  private static heartbeatIntervalId = null
+  private static heartbeatIntervalId
   public static heartBeat() {
     if (WS) clearInterval(WS.heartbeatIntervalId);
     WS.heartbeatIntervalId = setInterval(() => {
       let csStr = localStorage.getItem('loginCS')
+      if (!csStr) return
       let cs = JSON.parse(csStr)
-      if (!cs) return
       let input = {
         member_id: cs.member_id,
       };
@@ -65,7 +70,7 @@ class WS extends WebSocket {
   public static send({ action, data }) {
     return new Promise<any>(async (resolve, reject) => {
       let requestId = WS.currentRequestId;
-      if (this.instance&&this.instance.readyState === 1) {
+      if (this.instance&&this.instance.readyState === WebSocket.OPEN) {
         const input = {
           action: action,
           data: data,
@@ -81,11 +86,6 @@ class WS extends WebSocket {
         };
         this.instance.send(JSON.stringify(input));
       } else {
-        await new Promise((resolve) => {
-          setTimeout(() => {
-            resolve();
-          }, 1000);
-        });
         await WS.connect();
         let res = await WS.send({ action, data });
         resolve(res);

@@ -1,11 +1,12 @@
 import React from 'react';
 import WindowCtrlBar from '../../components/WindowControlBar';
-import UserHead from '../../components/UserHead';
+import MainHead from '../../components/MainHead';
 import InfoBox from '../../components/InfoBox';
 import ChatBox from '../../components/ChatBox';
 import CustomerList from '../../components/CustomerList';
-
 import styles from './index.sass';
+import WS from '../../Util/webSocket';
+
 // @ts-ignore
 const {ipcRenderer} = window.require('electron')
 
@@ -31,6 +32,8 @@ export default class Login extends React.Component {
         localStorage.removeItem("autoLogin")
       }
     })
+
+    WS.heartBeat()
   }
 
   state={
@@ -41,7 +44,7 @@ export default class Login extends React.Component {
     return (
       <div className={"root withShadow" + ' ' + styles.root} style={{opacity:this.state.opacity}} >
         <WindowCtrlBar login={false}/>
-        <UserHead />
+        <MainHead />
         <div className={styles.mainLayout}>
           <CustomerList />
           <ChatBox />

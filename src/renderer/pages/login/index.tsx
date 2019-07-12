@@ -94,7 +94,13 @@ export default class Login extends React.Component {
     });
   };
 
+  lockLogin = false
+
   login = async () => {
+    if (this.lockLogin){
+      return
+    }
+    this.lockLogin = true
     this.setState({
       loginText: '正在登录中...',
     });
@@ -133,6 +139,7 @@ export default class Login extends React.Component {
         loginText: '登录',
       });
       message.error(e.message)
+      this.lockLogin = false
     }
   };
 

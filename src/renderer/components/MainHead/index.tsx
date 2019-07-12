@@ -6,7 +6,19 @@ export default class extends React.Component {
 
   state={
     avatar:require("@/assets/default_user_img.png"),
-    statusCode:0
+    statusCode:0,
+    userName:''
+  }
+
+  componentDidMount(): void {
+    let csStr = localStorage.getItem("loginCS")
+    if (csStr){
+      let cs = JSON.parse(csStr)
+      this.setState({
+        avatar:cs.member_avatar,
+        userName:cs.member_name
+      })
+    }
   }
 
 
@@ -44,7 +56,7 @@ export default class extends React.Component {
       <div className={styl.head}>
         <div className={styl.img}><span className={styl.circle} style={{backgroundColor:this.status[this.state.statusCode].color}}/><img src={this.state.avatar}/></div>
         <div className={styl.status}>
-          <div className={styl.name}>客服名称</div>
+          <div className={styl.name}>{this.state.userName}</div>
           <Dropdown overlay={menu} trigger={['click']} className={styl.dropdown}>
             <div>
               {this.status[this.state.statusCode].name} <Icon type="down" />
