@@ -21,6 +21,16 @@ export default class Login extends React.Component {
         opacity:1
       })
     },0)
+
+    ipcRenderer.on("win-fade",(e,turnOffAutoLogin)=>{
+      this.setState({
+        opacity:0
+      })
+      if (turnOffAutoLogin){
+        localStorage.removeItem("rememberPassword")
+        localStorage.removeItem("autoLogin")
+      }
+    })
   }
 
   state={

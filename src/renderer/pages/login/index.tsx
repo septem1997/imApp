@@ -26,12 +26,12 @@ export default class Login extends React.Component {
     avatar: require('@/assets/default_user_img.png'),
     username: localStorage.getItem('lastLoginCS') || '',
     options: [],
-    rememberPassword: true,
-    autoLogin: true,
+    rememberPassword:localStorage.getItem("rememberPassword")==='true',
+    autoLogin:localStorage.getItem("autoLogin")==='true',
     openSuggestion: false,
     loginText: '登录',
-    opacity: 1,
-    password: '',
+    opacity: 0,
+    password: localStorage.getItem("rememberPassword")==='true'?localStorage.getItem("lastLoginPWD"):'',
   };
 
   getAvatarTimeoutId = null;
@@ -75,6 +75,15 @@ export default class Login extends React.Component {
         options:list
       })
     }
+    ipcRenderer.send("win-show")
+    setTimeout(()=>{
+      this.setState({
+        opacity:1
+      })
+    },0)
+    if (this.state.autoLogin){
+      this.login()
+    }
   }
 
   onAutoLoginChange = (e) => {
@@ -90,6 +99,12 @@ export default class Login extends React.Component {
       loginText: '正在登录中...',
     });
     try {
+      if (!this.state.username){
+        throw new Error('请输入帐号');
+      }
+      if (!this.state.password){
+        throw new Error('请输入密码');
+      }
       let res = await WS.send({
         action: 'chat::loginIm',
         data: {
@@ -97,13 +112,12 @@ export default class Login extends React.Component {
           password: this.state.password,
         },
       });
-      console.log(res);
       if (res.msg) {
-        message.error(res.msg);
         throw new Error(res.msg);
       }
       localStorage.setItem('loginCS', JSON.stringify(res));
       localStorage.setItem('lastLoginCS', this.state.username);
+      localStorage.setItem('lastLoginPWD', this.state.password);
       if (!this.state.options.includes(this.state.username)){
         localStorage.setItem('CSUsernameList',JSON.stringify(this.state.options.concat(this.state.username)));
       }
@@ -118,13 +132,20 @@ export default class Login extends React.Component {
       this.setState({
         loginText: '登录',
       });
+      message.error(e.message)
     }
   };
+
+  onKeyUp=(e)=>{
+    if (e.keyCode===13){
+      this.login()
+    }
+  }
 
 
   render(): React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
     return (
-      <div className={'root withShadow' + ' ' + styles.content} style={{ opacity: this.state.opacity }}>
+      <div className={'root withShadow' + ' ' + styles.content} onKeyUp={this.onKeyUp} style={{ opacity: this.state.opacity }}>
         <WindowCtrlBar login={true}/>
 
         <div className={styles.bg}><img src={require('@/assets/login_bg.png')}/></div>
@@ -154,8 +175,8 @@ export default class Login extends React.Component {
           </div>
           <Button type="primary" onClick={this.login} className={styles.loginBtn}>{this.state.loginText}</Button>
           <div className={styles.toolBar}>
-            <Checkbox onChange={this.onRememberPasswordChange} value={this.state.rememberPassword}>记住密码</Checkbox>
-            <Checkbox onChange={this.onAutoLoginChange} value={this.state.autoLogin}>自动登录</Checkbox>
+            <Checkbox onChange={this.onRememberPasswordChange}  checked={this.state.rememberPassword}>记住密码</Checkbox>
+            <Checkbox onChange={this.onAutoLoginChange} checked={this.state.autoLogin}>自动登录</Checkbox>
             <a href={'#'}>忘记密码</a>
           </div>
         </div>

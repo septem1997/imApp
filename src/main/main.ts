@@ -14,6 +14,7 @@ if (process.env.NODE_ENV !== 'development') {
 
 let winUrl: string = '';
 
+const iconFlash = false
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -62,10 +63,30 @@ function createWindow() {
     }
   })
 
-  initAppTray();
+  initAppTray(true);
 }
 
-function initAppTray() {
+
+function switchToLogin(resetLoginData?) {
+  mainWindow.webContents.send("win-fade",resetLoginData)
+  setTimeout(()=>{
+    mainWindow.hide()
+    mainWindow.setMaximumSize(600,370)
+    mainWindow.setMinimumSize(600,370)
+    mainWindow.setSize(600,370)
+    mainWindow.setResizable(false)
+    mainWindow.setMaximizable(false)
+    mainWindow.center()
+    mainWindow.loadURL(winUrl + "#/login")
+    initAppTray(true)
+  },500)
+}
+
+
+function initAppTray(hideOption?) {
+  if (appTray){
+    appTray.destroy()
+  }
   if (process.platform !== 'darwin') {
     appTray = new Tray(__static + '/img/icon/kyy_no_tr.ico');
   } else {
@@ -76,7 +97,7 @@ function initAppTray() {
   appTray.on('click', function() {
     mainWindow.show();
   });
-  let trayMenuTemplate = [
+  let trayMenuTemplate = hideOption?[
     {
       label: '打开快优易IM',
       click: function() {
@@ -90,15 +111,20 @@ function initAppTray() {
         app.quit();
       },
     },
-    /*{
+  ]:[
+    {
+      label: '打开快优易IM',
+      click: function() {
+        mainWindow.show();
+      },
+    },
+    {
       label: '账号注销',
       click: function () {
-        mainWindow.webContents.send('closeLocal');
-        mainWindow.webContents.send('closeSocket');
         if(iconFlash){
           clearInterval(iconFlash);
         }
-        resetAppTray()
+        initAppTray(hideOption)
         switchToLogin(true)
       }
     },
@@ -108,19 +134,18 @@ function initAppTray() {
         if(iconFlash){
           clearInterval(iconFlash);
         }
-        resetAppTray()
-        mainWindow.webContents.send('closeSocket');
+        initAppTray(hideOption)
         switchToLogin()
       }
     },
     {
       label: '退出快优易IM',
-      click: function () {
+      click: function() {
         //清除登陆状态
-        closeWindow();
-      }
-    }*/
-  ];
+        app.quit();
+      },
+    },
+  ]
   //图标的上下文菜单
   const contextMenu = Menu.buildFromTemplate(trayMenuTemplate);
   //设置此图标的上下文菜单
@@ -137,6 +162,7 @@ function login() {
   mainWindow.setMaximizable(true);
   mainWindow.center();
   mainWindow.loadURL(winUrl + '#/main');
+  initAppTray()
 }
 
 app.on('ready', createWindow);
