@@ -14,7 +14,7 @@ export default class extends React.Component {
 
     return (<div className={sty.root} style={{height:'100%'}}>
       <input className={sty.search} placeholder={"搜索最近联系人、消息记录"}/>
-
+{/*
       <Tabs defaultActiveKey="1" className={"myTabs"}>
         <TabPane tab="会话" key="1" style={{height:'100%'}}>
           <SessionList />
@@ -22,7 +22,8 @@ export default class extends React.Component {
         <TabPane tab="最近" key="2" style={{height:'100%'}}>
           <RecentList />
         </TabPane>
-      </Tabs>
+      </Tabs>*/}
+      <SessionList />
     </div>);
   }
 }

@@ -71,7 +71,7 @@ function switchToLogin(resetLoginData?) {
   mainWindow.webContents.send("win-fade",resetLoginData)
   setTimeout(()=>{
     mainWindow.hide()
-    mainWindow.setMaximumSize(600,370)
+    // mainWindow.setMaximumSize(600,370)
     mainWindow.setMinimumSize(600,370)
     mainWindow.setSize(600,370)
     mainWindow.setResizable(false)
