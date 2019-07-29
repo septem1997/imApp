@@ -1,6 +1,6 @@
 import React from 'react';
 import sty from './index.sass'
-import {Tabs} from 'antd'
+import {Tabs} from 'antd';
 import UserDetail from '../UserDetail';
 import UserOrders from '../UserOrders';
 import UserChatLog from '../UserChatLog';
