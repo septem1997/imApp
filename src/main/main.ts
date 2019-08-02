@@ -37,7 +37,7 @@ function createWindow() {
 
   if (process.env.NODE_ENV === 'development') {
     winUrl = 'http://localhost:8000';
-    mainWindow.loadURL('http://localhost:8000/#/');
+    mainWindow.loadURL(winUrl);
     mainWindow.webContents.openDevTools();
   } else {
     winUrl = path.join(__dirname, './dist/renderer/index.html');

@@ -153,6 +153,7 @@ export default connect(mapStateToProps)(class extends React.Component<Props> {
           <Upload accept={'image/*'}><Icon type="picture"/></Upload>
           <Upload><Icon type="folder"/></Upload>
           <Icon type="star" onClick={this.sendEvaluation}/>
+          <Icon type="scissor" />
           <div onClick={this.openQuickReplyPanel} className={sty.quickReply}>快捷回复</div>
         </div>
         <div onKeyDown={this.onKeyDown} ref={this.textarea} className={sty.textarea} onPaste={this.onPaste} contentEditable={true}/>
