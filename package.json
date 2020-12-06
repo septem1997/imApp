@@ -13,7 +13,7 @@
     "directories": {
       "output": "release"
     },
-    "asar": true,
+    "asar": false,
     "appId": "com.kuaiyouyi.app.im",
     "dmg": {
       "contents": [
@@ -45,15 +45,14 @@
     "start:main": "electron-webpack dev",
     "start:renderer": "set APP_ROOT=src/renderer&&set BROWSER=none&&umi dev",
     "build-main-prod": "set NODE_ENV=production&&webpack --config ./build/webpack.main.prod.config.js",
-    "build-main-dev": "NODE_ENV=development webpack --config ./build/webpack.main.config.js",
+    "build-main-dev": "set NODE_ENV=development && webpack --config ./build/webpack.main.config.js",
     "build:renderer": "set APP_ROOT=src/renderer&&umi build",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "debug:main": "electron --inspect=5858 -w ./dist/main/main.js",
-    "pack": "npm run build:renderer && npm run build-main-prod && electron-builder --dir",
+    "pack": "npm run build:renderer && npm run build-main-dev && electron-builder --dir",
     "dist": "electron-builder",
     "dist-all": "electron-builder -mwl",
-    "prettier": "prettier --list-different \"./**/*.{ts,tsx,js,jsx,less}\"",
     "postinstall": "electron-builder install-app-deps"
   },
   "keywords": [
@@ -70,35 +69,36 @@
     "email": "750627595@qq.com"
   },
   "devDependencies": {
-    "rucksack-css": "^1.0.2",
-    "chain-css-loader": "^1.1.2",
-    "awesome-typescript-loader": "^5.2.1",
-    "electron": "latest",
-    "electron-builder": "^20.38.5",
-    "electron-debug": "^2.0.0",
-    "electron-webpack": "^2.6.2",
-    "electron-webpack-ts": "^3.1.1",
+    "awesome-typescript-loader": "5.2.1",
+    "chain-css-loader": "1.1.2",
+    "cross-env": "7.0.3",
+    "electron": "4.2.12",
+    "electron-builder": "20.38.5",
+    "electron-debug": "2.0.0",
+    "electron-webpack": "2.6.2",
+    "electron-webpack-ts": "3.1.1",
+    "node-sass": "4.12.0",
     "prettier": "1.16.4",
-    "ts-loader": "^5.3.3",
-    "typescript": "^3.2.4",
-    "uglifyjs-webpack-plugin": "^2.1.1",
-    "umi": "latest",
+    "react-hot-loader": "4.11.1",
+    "rucksack-css": "1.0.2",
+    "sass-loader": "7.1.0",
+    "style-loader": "0.23.1",
+    "stylus": "0.54.5",
+    "stylus-loader": "3.0.2",
+    "ts-loader": "5.3.3",
+    "typescript": "3.2.4",
+    "uglifyjs-webpack-plugin": "2.1.1",
+    "umi": "2.13.16",
+    "umi-plugin-react": "1.9.7",
     "webpack": "4.28.0",
-    "webpack-cli": "^3.2.1",
-    "webpack-merge": "^4.2.1",
-    "stylus": "^0.54.5",
-    "style-loader": "^0.23.1",
-    "stylus-loader": "^3.0.2",
-    "react-hot-loader": "^4.11.1",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^7.1.0",
-    "umi-plugin-react": "^1.9.7"
+    "webpack-cli": "3.2.1",
+    "webpack-merge": "4.2.1"
   },
   "dependencies": {
-    "moment": "^2.24.0",
-    "http-proxy": "^1.17.0",
-    "poststylus": "^1.0.0",
-    "redbox-react": "^1.6.0"
+    "moment": "2.24.0",
+    "http-proxy": "1.17.0",
+    "poststylus": "1.0.0",
+    "redbox-react": "1.6.0"
   },
   "electronWebpack": {
     "main": {

@@ -24,14 +24,14 @@ export default class Login extends React.Component {
 
   state = {
     avatar: require('@/assets/default_user_img.png'),
-    username: localStorage.getItem('lastLoginCS') || '',
+    username: localStorage.getItem('lastLoginCS') || 'admin',
     options: [],
     rememberPassword:localStorage.getItem("rememberPassword")==='true',
     autoLogin:localStorage.getItem("autoLogin")==='true',
     openSuggestion: false,
     loginText: '登录',
     opacity: 0,
-    password: localStorage.getItem("rememberPassword")==='true'?localStorage.getItem("lastLoginPWD"):'',
+    password: localStorage.getItem("rememberPassword")==='true'?localStorage.getItem("lastLoginPWD"):'admin',
   };
 
   getAvatarTimeoutId = null;
@@ -45,17 +45,17 @@ export default class Login extends React.Component {
       clearTimeout(this.getAvatarTimeoutId);
     }
     this.getAvatarTimeoutId = setTimeout(async () => {
-      let res = await WS.send({
-        action: 'chat::getUserImg',
-        data: {
-          user_name: this.state.username,
-        },
-      });
-      if (res) {
-        this.setState({
-          avatar: res.member_avatar,
-        });
-      }
+      // let res = await WS.send({
+      //   action: 'chat::getUserImg',
+      //   data: {
+      //     user_name: this.state.username,
+      //   },
+      // });
+      // if (res) {
+      //   this.setState({
+      //     avatar: res.member_avatar,
+      //   });
+      // }
     }, 1000);
   };
 
@@ -111,17 +111,17 @@ export default class Login extends React.Component {
       if (!this.state.password){
         throw new Error('请输入密码');
       }
-      let res = await WS.send({
-        action: 'chat::loginIm',
-        data: {
-          user_name: this.state.username,
-          password: this.state.password,
-        },
-      });
-      if (res.msg) {
-        throw new Error(res.msg);
-      }
-      localStorage.setItem('loginCS', JSON.stringify(res));
+      // let res = await WS.send({
+      //   action: 'chat::loginIm',
+      //   data: {
+      //     user_name: this.state.username,
+      //     password: this.state.password,
+      //   },
+      // });
+      // if (res.msg) {
+      //   throw new Error(res.msg);
+      // }
+      // localStorage.setItem('loginCS', JSON.stringify(res));
       localStorage.setItem('lastLoginCS', this.state.username);
       localStorage.setItem('lastLoginPWD', this.state.password);
       if (!this.state.options.includes(this.state.username)){
