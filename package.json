@@ -96,7 +96,7 @@
   },
   "dependencies": {
     "moment": "2.24.0",
-    "http-proxy": "1.17.0",
+    "http-proxy": "1.18.1",
     "poststylus": "1.0.0",
     "redbox-react": "1.6.0"
   },
