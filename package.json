@@ -72,7 +72,7 @@
     "awesome-typescript-loader": "5.2.1",
     "chain-css-loader": "1.1.2",
     "cross-env": "7.0.3",
-    "electron": "4.2.12",
+    "electron": "13.6.6",
     "electron-builder": "20.38.5",
     "electron-debug": "2.0.0",
     "electron-webpack": "2.6.2",
